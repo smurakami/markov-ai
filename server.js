@@ -25,9 +25,11 @@ app.get('/geturl',function(req,res){
     });
 });
 
-
 app.listen(3000, function () {
     console.log('Example app listening on port 3000!');
 });
 
+process.on('uncaughtException', function(err) {
+  console.log(err);
+});
 
