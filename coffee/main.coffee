@@ -10,20 +10,29 @@ geturl = (url, callback) ->
 
 $ ->
   markov = new MarkovChain("")
-  window.markov = markov
 
   markov.setup ->
-    console.log 'no error'
-    geturl "http://qiita.com/hogehoge-banana/items/2a3c15b8f68de951bfe3", (res) ->
-      window.res = res
+    generate = ->
+      text = markov.generate(5)
+      if text != ""
+        $('#output ul').prepend $("<li>#{text}</li>")
+
+    setInterval(generate, 1000)
+
+  $('form#url_form').on 'submit', (e) ->
+    e.preventDefault()
+    console.log $(this)
+    window.x = $(this)
+    url = $(this).serializeArray()[0].value
+    console.log url
+    $('#input ul').prepend $("<li>#{url}</li>")
+
+    geturl url, (res) ->
+      console.log res
       for elem in $(res).find('p, a, h1, h2, h3, li')
         text = $(elem).text()
         console.log text
         markov.addText text
-        
-    generate = ->
-      console.log markov.generate(5)
-      # setTimeout(generate, 500)
+    $('form#url_form input').val null
 
-    setInterval(generate, 500)
 

@@ -19,13 +19,28 @@
   $(function() {
     var markov;
     markov = new MarkovChain("");
-    window.markov = markov;
-    return markov.setup(function() {
+    markov.setup(function() {
       var generate;
-      console.log('no error');
-      geturl("http://qiita.com/hogehoge-banana/items/2a3c15b8f68de951bfe3", function(res) {
+      generate = function() {
+        var text;
+        text = markov.generate(5);
+        if (text !== "") {
+          return $('#output ul').prepend($("<li>" + text + "</li>"));
+        }
+      };
+      return setInterval(generate, 1000);
+    });
+    return $('form#url_form').on('submit', function(e) {
+      var url;
+      e.preventDefault();
+      console.log($(this));
+      window.x = $(this);
+      url = $(this).serializeArray()[0].value;
+      console.log(url);
+      $('#input ul').prepend($("<li>" + url + "</li>"));
+      geturl(url, function(res) {
         var elem, i, len, ref, results, text;
-        window.res = res;
+        console.log(res);
         ref = $(res).find('p, a, h1, h2, h3, li');
         results = [];
         for (i = 0, len = ref.length; i < len; i++) {
@@ -36,10 +51,7 @@
         }
         return results;
       });
-      generate = function() {
-        return console.log(markov.generate(5));
-      };
-      return setInterval(generate, 500);
+      return $('form#url_form input').val(null);
     });
   });
 
