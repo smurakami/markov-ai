@@ -20,7 +20,27 @@
     var markov;
     markov = new MarkovChain("");
     window.markov = markov;
-    return markov.setup(function() {});
+    return markov.setup(function() {
+      var generate;
+      console.log('no error');
+      geturl("http://qiita.com/hogehoge-banana/items/2a3c15b8f68de951bfe3", function(res) {
+        var elem, i, len, ref, results, text;
+        window.res = res;
+        ref = $(res).find('p, a, h1, h2, h3, li');
+        results = [];
+        for (i = 0, len = ref.length; i < len; i++) {
+          elem = ref[i];
+          text = $(elem).text();
+          console.log(text);
+          results.push(markov.addText(text));
+        }
+        return results;
+      });
+      generate = function() {
+        return console.log(markov.generate(5));
+      };
+      return setInterval(generate, 500);
+    });
   });
 
 }).call(this);
