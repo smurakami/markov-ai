@@ -16,6 +16,20 @@
     .container
       %h1 ウェブサイトを餌にしてAIを育てよう
 
+      %h2 これは何？
+
+      %p 餌にしたいウェブサイトのURLを入れると、そのウェブサイトの文章を学習してマルコフ連鎖でおしゃべりしてくれるAIです。
+      %p 複数のウェブサイトを餌にすると、いろんなウェブサイトの文体を混ぜて学習できますよ！
+      %p
+        例えば、
+        %a{href: "http://www.nakamurahiroki.com/2010/04/31.html"} http://www.nakamurahiroki.com/2010/04/31.html
+        とか
+        %a{href: "http://getnews.jp/archives/9950"} http://getnews.jp/archives/9950
+        とかがオススメです。
+      %p まだ開発中で、UTF-8で記述されているウェブサイトしか餌にできません。
+      %p なので、青空文庫とか2ちゃんとかは厳しいかもです。
+      %p また、文章が長すぎるウェブサイト(メガバイト級)もまだ読めないので、大目に見てあげてください。
+
       %form#url_form
         .form-group
           %label URL
@@ -24,7 +38,7 @@
           %button.btn.btn-primary{ type: 'submit' } 食べさせる
 
       #input
-        %h2 食べさせたウェブサイト
+        %h3 食べさせたウェブサイト
 
         %ul
 

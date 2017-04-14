@@ -17,6 +17,19 @@
   <body>
     <div class='container'>
       <h1>ウェブサイトを餌にしてAIを育てよう</h1>
+      <h2>これは何？</h2>
+      <p>餌にしたいウェブサイトのURLを入れると、そのウェブサイトの文章を学習してマルコフ連鎖でおしゃべりしてくれるAIです。</p>
+      <p>複数のウェブサイトを餌にすると、いろんなウェブサイトの文体を混ぜて学習できますよ！</p>
+      <p>
+        例えば、
+        <a href='http://www.nakamurahiroki.com/2010/04/31.html'>http://www.nakamurahiroki.com/2010/04/31.html</a>
+        とか
+        <a href='http://getnews.jp/archives/9950'>http://getnews.jp/archives/9950</a>
+        とかがオススメです。
+      </p>
+      <p>まだ開発中で、UTF-8で記述されているウェブサイトしか餌にできません。</p>
+      <p>なので、青空文庫とか2ちゃんとかは厳しいかもです。</p>
+      <p>また、文章が長すぎるウェブサイト(メガバイト級)もまだ読めないので、大目に見てあげてください。</p>
       <form id='url_form'>
         <div class='form-group'>
           <label>URL</label>
@@ -27,7 +40,7 @@
         </div>
       </form>
       <div id='input'>
-        <h2>食べさせたウェブサイト</h2>
+        <h3>食べさせたウェブサイト</h3>
         <ul></ul>
       </div>
       <div id='output'>
