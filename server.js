@@ -26,7 +26,7 @@ app.get('/geturl',function(req,res){
 });
 
 app.listen(3414, function () {
-    console.log('Example app listening on port 3000!');
+    console.log('Example app listening on port 3414!');
 });
 
 process.on('uncaughtException', function(err) {
