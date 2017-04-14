@@ -9,6 +9,13 @@ geturl = (url, callback) ->
       callback(response)
 
 $ ->
+
+  # console.log 'hoge'
+  # geturl 'http://www.aozora.gr.jp/cards/000148/files/789_14547.html', (res) ->
+  #   console.log 'hoge'
+  #   console.log(res)
+  # return
+
   markov = new MarkovChain("")
 
   markov.setup ->
@@ -21,18 +28,22 @@ $ ->
 
   $('form#url_form').on 'submit', (e) ->
     e.preventDefault()
-    console.log $(this)
     window.x = $(this)
     url = $(this).serializeArray()[0].value
-    console.log url
     $('#input ul').prepend $("<li>#{url}</li>")
 
+    console.log 'fuhe'
+
     geturl url, (res) ->
-      console.log res
-      for elem in $(res).find('p, a, h1, h2, h3, li')
-        text = $(elem).text()
-        console.log text
-        markov.addText text
+      text = $(res).text()
+      jtext = text.match(/[^\x00-\x7E]+/g).join("")
+      console.log jtext
+      markov.addText jtext
+
+      # for elem in $(res).find('p, a, h1, h2, h3, li')
+      #   text = $(elem).text()
+      #   console.log text
+        # markov.addText text
     $('form#url_form input').val null
 
 

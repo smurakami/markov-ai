@@ -33,23 +33,16 @@
     return $('form#url_form').on('submit', function(e) {
       var url;
       e.preventDefault();
-      console.log($(this));
       window.x = $(this);
       url = $(this).serializeArray()[0].value;
-      console.log(url);
       $('#input ul').prepend($("<li>" + url + "</li>"));
+      console.log('fuhe');
       geturl(url, function(res) {
-        var elem, i, len, ref, results, text;
-        console.log(res);
-        ref = $(res).find('p, a, h1, h2, h3, li');
-        results = [];
-        for (i = 0, len = ref.length; i < len; i++) {
-          elem = ref[i];
-          text = $(elem).text();
-          console.log(text);
-          results.push(markov.addText(text));
-        }
-        return results;
+        var jtext, text;
+        text = $(res).text();
+        jtext = text.match(/[^\x00-\x7E]+/g).join("");
+        console.log(jtext);
+        return markov.addText(jtext);
       });
       return $('form#url_form input').val(null);
     });
